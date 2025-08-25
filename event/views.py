@@ -8,6 +8,9 @@ def dashboard(request):
 def dashboard_event(request):
     return render(request, 'dashboard/dashboard-event.html')
 
+def dashboard_event_create(request):
+    pass
+
 def dashboard_participant(request):
     return render(request, 'dashboard/dashboard-participant.html')
 
