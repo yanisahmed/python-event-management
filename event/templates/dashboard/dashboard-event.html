@@ -1,0 +1,85 @@
+{% extends "dashboard/dashboard.html" %}
+
+{% block dashboard %}
+        <div class="max-w-7xl mx-auto p-4 lg:p-8">
+            <header class="flex items-center justify-between gap-4">
+            <div>
+                <h1 class="text-2xl font-semibold">Events</h1>
+                <p class="text-slate-500">Browse and manage all events.</p>
+            </div>
+            <div class="flex items-center gap-2">
+                <a href="#" class="px-3 py-2 rounded-xl border">Import</a>
+                <a href="#" class="px-3 py-2 rounded-xl border">Export</a>
+                <a href="#" class="px-4 py-2 rounded-xl bg-indigo-600 text-white">Create Event</a>
+            </div>
+            </header>
+
+            
+             {% comment %} Filters {% endcomment %}
+            <section class="mt-6 rounded-2xl border bg-white p-4">
+            <div class="grid md:grid-cols-4 gap-3">
+                <input type="search" placeholder="Search by name…" class="w-full rounded-xl border px-4 py-2" />
+                <select class="w-full rounded-xl border px-3 py-2">
+                <option>All Categories</option>
+                <option>Business</option>
+                <option>Technology</option>
+                <option>Education</option>
+                </select>
+                <select class="w-full rounded-xl border px-3 py-2">
+                <option>Any Status</option>
+                <option>Draft</option>
+                <option>Scheduled</option>
+                <option>Completed</option>
+                <option>Cancelled</option>
+                </select>
+                <button class="rounded-xl border px-4 py-2">Reset</button>
+            </div>
+            </section>
+
+             {% comment %} Table {% endcomment %}
+            <section class="mt-4 rounded-2xl border bg-white overflow-hidden">
+            <div class="px-5 py-4 border-b flex items-center justify-between">
+                <div class="text-sm text-slate-600">Showing 1–10 of 42 events</div>
+                <div>
+                <select class="rounded-lg border px-3 py-2 text-sm">
+                    <option>Sort: Newest</option>
+                    <option>Sort: Oldest</option>
+                    <option>Sort: Most Attendees</option>
+                </select>
+                </div>
+            </div>
+            <div class="overflow-x-auto">
+                <table class="min-w-full text-sm">
+                <thead class="bg-slate-50 text-slate-600">
+                    <tr>
+                    <th class="text-left px-5 py-3">Event</th>
+                    <th class="text-left px-5 py-3">Date</th>
+                    <th class="text-left px-5 py-3">Category</th>
+                    <th class="text-left px-5 py-3">Participants</th>
+                    <th class="text-left px-5 py-3">Status</th>
+                    <th class="px-5 py-3"></th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y">
+                    <tr class="hover:bg-slate-50">
+                    <td class="px-5 py-4 font-medium">Annual Conference</td>
+                    <td class="px-5 py-4">Aug 30, 2025</td>
+                    <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-indigo-100 text-indigo-700">Business</span></td>
+                    <td class="px-5 py-4">450</td>
+                    <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-emerald-100 text-emerald-700">Scheduled</span></td>
+                    <td class="px-5 py-4 text-right"><a class="text-indigo-600" href="#">View</a></td>
+                    </tr>
+                    <tr class="hover:bg-slate-50">
+                    <td class="px-5 py-4 font-medium">Tech Meetup</td>
+                    <td class="px-5 py-4">Sep 12, 2025</td>
+                    <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-fuchsia-100 text-fuchsia-700">Technology</span></td>
+                    <td class="px-5 py-4">220</td>
+                    <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-yellow-100 text-yellow-700">In Progress</span></td>
+                    <td class="px-5 py-4 text-right"><a class="text-indigo-600" href="#">View</a></td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+            </section>
+  </div>
+{% endblock dashboard %}

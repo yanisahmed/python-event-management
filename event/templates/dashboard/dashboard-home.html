@@ -1,0 +1,72 @@
+{% extends "dashboard/dashboard.html" %}
+
+{% block dashboard %}
+<div>
+          <h1 class="text-2xl font-semibold">Dashboard</h1>
+          <p class="text-slate-500">Overview of your events, attendees, and sales.</p>
+        </div>
+
+        <!-- Stats Grid -->
+        <section class="grid sm:grid-cols-2 xl:grid-cols-4 gap-4">
+          <div class="rounded-2xl border bg-white p-5">
+            <p class="text-sm text-slate-500">Total Events</p>
+            <p class="mt-2 text-3xl font-bold">32</p>
+            <p class="mt-1 text-xs text-emerald-600">+3 this month</p>
+          </div>
+          <div class="rounded-2xl border bg-white p-5">
+            <p class="text-sm text-slate-500">Attendees</p>
+            <p class="mt-2 text-3xl font-bold">1,810</p>
+            <p class="mt-1 text-xs text-emerald-600">+218 new</p>
+          </div>
+          <div class="rounded-2xl border bg-white p-5">
+            <p class="text-sm text-slate-500">Revenue</p>
+            <p class="mt-2 text-3xl font-bold">$24,500</p>
+            <p class="mt-1 text-xs text-slate-500">This month</p>
+          </div>
+          <div class="rounded-2xl border bg-white p-5">
+            <p class="text-sm text-slate-500">Tickets Sold</p>
+            <p class="mt-2 text-3xl font-bold">1,210</p>
+            <p class="mt-1 text-xs text-emerald-600">+12%</p>
+          </div>
+        </section>
+
+        <!-- Upcoming Events -->
+        <section class="rounded-2xl border bg-white">
+          <div class="p-5 border-b flex items-center justify-between">
+            <h2 class="font-semibold">Upcoming Events</h2>
+            <a href="events.html" class="text-sm text-indigo-600 hover:underline">View all</a>
+          </div>
+          <div class="overflow-x-auto">
+            <table class="min-w-full text-sm">
+              <thead class="bg-slate-50 text-slate-600">
+                <tr>
+                  <th class="text-left px-5 py-3">Date</th>
+                  <th class="text-left px-5 py-3">Event</th>
+                  <th class="text-left px-5 py-3">Category</th>
+                  <th class="text-left px-5 py-3">Attendees</th>
+                  <th class="text-left px-5 py-3">Status</th>
+                  <th class="px-5 py-3"></th>
+                </tr>
+              </thead>
+              <tbody class="divide-y">
+                <tr>
+                  <td class="px-5 py-4">Aug 30</td>
+                  <td class="px-5 py-4 font-medium">Annual Conference</td>
+                  <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-indigo-100 text-indigo-700">Business</span></td>
+                  <td class="px-5 py-4">450</td>
+                  <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-emerald-100 text-emerald-700">Scheduled</span></td>
+                  <td class="px-5 py-4 text-right"><a class="text-indigo-600" href="events.html">Manage</a></td>
+                </tr>
+                <tr>
+                  <td class="px-5 py-4">Sep 12</td>
+                  <td class="px-5 py-4 font-medium">Tech Meetup</td>
+                  <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-fuchsia-100 text-fuchsia-700">Technology</span></td>
+                  <td class="px-5 py-4">220</td>
+                  <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-yellow-100 text-yellow-700">In Progress</span></td>
+                  <td class="px-5 py-4 text-right"><a class="text-indigo-600" href="events.html">Manage</a></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+{% endblock dashboard %}

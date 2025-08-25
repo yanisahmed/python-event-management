@@ -1,0 +1,90 @@
+{% extends "dashboard/dashboard.html" %} 
+
+{% block dashboard %}
+
+<div class="max-w-7xl mx-auto p-4 lg:p-8 space-y-6">
+    <header class="flex items-center justify-between">
+      <div>
+        <h1 class="text-2xl font-semibold">Tickets</h1>
+        <p class="text-slate-500">Configure ticket types and review sales.</p>
+      </div>
+      <div class="flex items-center gap-2">
+        <a href="#" class="px-4 py-2 rounded-xl bg-indigo-600 text-white">Create Ticket Type</a>
+      </div>
+    </header>
+
+    <!-- Ticket Cards -->
+    <section class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div class="rounded-2xl border bg-white p-5">
+        <div class="flex items-center justify-between">
+          <h3 class="font-semibold">Standard</h3>
+          <span class="text-sm text-slate-500">$49</span>
+        </div>
+        <p class="mt-2 text-sm text-slate-600">General access</p>
+        <div class="mt-4 text-sm"><span class="font-semibold">Sold:</span> 720</div>
+        <div class="mt-2 text-sm"><span class="font-semibold">Revenue:</span> $35,280</div>
+        <div class="mt-4 flex gap-2"><button class="px-3 py-2 rounded-xl border">Edit</button><button class="px-3 py-2 rounded-xl border">Archive</button></div>
+      </div>
+      <div class="rounded-2xl border bg-white p-5">
+        <div class="flex items-center justify-between">
+          <h3 class="font-semibold">VIP</h3>
+          <span class="text-sm text-slate-500">$129</span>
+        </div>
+        <p class="mt-2 text-sm text-slate-600">Priority seating + lounge</p>
+        <div class="mt-4 text-sm"><span class="font-semibold">Sold:</span> 240</div>
+        <div class="mt-2 text-sm"><span class="font-semibold">Revenue:</span> $30,960</div>
+        <div class="mt-4 flex gap-2"><button class="px-3 py-2 rounded-xl border">Edit</button><button class="px-3 py-2 rounded-xl border">Archive</button></div>
+      </div>
+      <div class="rounded-2xl border bg-white p-5">
+        <div class="flex items-center justify-between">
+          <h3 class="font-semibold">Student</h3>
+          <span class="text-sm text-slate-500">$29</span>
+        </div>
+        <p class="mt-2 text-sm text-slate-600">Discounted with ID</p>
+        <div class="mt-4 text-sm"><span class="font-semibold">Sold:</span> 180</div>
+        <div class="mt-2 text-sm"><span class="font-semibold">Revenue:</span> $5,220</div>
+        <div class="mt-4 flex gap-2"><button class="px-3 py-2 rounded-xl border">Edit</button><button class="px-3 py-2 rounded-xl border">Archive</button></div>
+      </div>
+    </section>
+
+    <!-- Sales Table -->
+    <section class="rounded-2xl border bg-white overflow-hidden">
+      <div class="px-5 py-4 border-b flex items-center justify-between">
+        <h2 class="font-semibold">Recent Ticket Sales</h2>
+        <div class="text-sm text-slate-600">Last 30 days</div>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="min-w-full text-sm">
+          <thead class="bg-slate-50 text-slate-600">
+            <tr>
+              <th class="text-left px-5 py-3">Date</th>
+              <th class="text-left px-5 py-3">Buyer</th>
+              <th class="text-left px-5 py-3">Ticket</th>
+              <th class="text-left px-5 py-3">Amount</th>
+              <th class="text-left px-5 py-3">Status</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y">
+            <tr>
+              <td class="px-5 py-4">Aug 22</td>
+              <td class="px-5 py-4">Nabila H.</td>
+              <td class="px-5 py-4">VIP</td>
+              <td class="px-5 py-4">$129</td>
+              <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-emerald-100 text-emerald-700">Paid</span></td>
+            </tr>
+            <tr>
+              <td class="px-5 py-4">Aug 22</td>
+              <td class="px-5 py-4">Rafi K.</td>
+              <td class="px-5 py-4">Standard</td>
+              <td class="px-5 py-4">$49</td>
+              <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-yellow-100 text-yellow-700">Pending</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+{% endblock dashboard %}
+
+
