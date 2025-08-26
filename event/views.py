@@ -4,6 +4,9 @@ from event.forms import AddEventForm
 from django.contrib import messages
 
 # Create your views here.
+def frontend_home(request):
+    return render(request, 'frontend/home.html')    
+
 def dashboard(request):
     return render(request, 'dashboard/dashboard-home.html')
 
