@@ -2,33 +2,31 @@
 
 {% block dashboard %}
 
+        {% comment %} Modal {% endcomment %}
         <div class="p-6">
-
-            <!-- Modal -->
-             {% comment %} Modal {% endcomment %}
             <div id="eventModal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 flex items-center justify-center z-50">
                 <div class="bg-white rounded-xl shadow-lg w-full max-w-md p-6">
-                <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-xl font-semibold text-gray-700">Add New Event</h2>
-                    <button onclick="document.getElementById('eventModal').classList.add('hidden')" 
-                            class="text-gray-500 hover:text-gray-700">✕</button>
-                </div>
-
-                {% comment %} action="{% url 'create_event' %}" {% endcomment %}
-                <form id="eventForm" method="POST" class="space-y-4">
-                    {% csrf_token %}
-                    {{ event_from.as_p }}
-                    <div class="flex justify-end gap-2 pt-4">
-                        <button type="button" onclick="document.getElementById('eventModal').classList.add('hidden'); document.getElementById('eventForm').reset();" 
-                                class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">Cancel</button>
-                        <button type="submit" 
-                            class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Save</button>
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-xl font-semibold text-gray-700">Add New Event</h2>
+                        <button onclick="document.getElementById('eventModal').classList.add('hidden')" 
+                                class="text-gray-500 hover:text-gray-700">✕</button>
                     </div>
-                </form>
+
+                    {% comment %} action="{% url 'create_event' %}" {% endcomment %}
+                    <form id="eventForm" method="POST" class="space-y-4">
+                        {% csrf_token %}
+                        {{ event_from.as_p }}
+                        <div class="flex justify-end gap-2 pt-4">
+                            <button type="button" onclick="document.getElementById('eventModal').classList.add('hidden'); document.getElementById('eventForm').reset();" 
+                                    class="px-4 py-2 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300">Cancel</button>
+                            <button type="submit" 
+                                class="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">Save</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-
         </div>
+        {% comment %} Modal End{% endcomment %}
 
         {% comment %} Flash messages {% endcomment %}
         {% if messages %}
@@ -40,7 +38,9 @@
                 {% endfor %}
             </div>
         {% endif %}
+        {% comment %} Flash messages End{% endcomment %}
 
+        {% comment %} Main Content {% endcomment %}
         <div class="max-w-7xl mx-auto p-4 lg:p-8">
             <header class="flex items-center justify-between gap-4">
                 <div>
@@ -60,69 +60,72 @@
             
              {% comment %} Filters {% endcomment %}
             <section class="mt-6 rounded-2xl border bg-white p-4">
-            <div class="grid md:grid-cols-4 gap-3">
-                <input type="search" placeholder="Search by name…" class="w-full rounded-xl border px-4 py-2" />
-                <select class="w-full rounded-xl border px-3 py-2">
-                <option>All Categories</option>
-                <option>Business</option>
-                <option>Technology</option>
-                <option>Education</option>
-                </select>
-                <select class="w-full rounded-xl border px-3 py-2">
-                <option>Any Status</option>
-                <option>Draft</option>
-                <option>Scheduled</option>
-                <option>Completed</option>
-                <option>Cancelled</option>
-                </select>
-                <button class="rounded-xl border px-4 py-2">Reset</button>
-            </div>
-            </section>
-
-             {% comment %} Table {% endcomment %}
-            <section class="mt-4 rounded-2xl border bg-white overflow-hidden">
-            <div class="px-5 py-4 border-b flex items-center justify-between">
-                <div class="text-sm text-slate-600">Showing 1–10 of 42 events</div>
-                <div>
-                <select class="rounded-lg border px-3 py-2 text-sm">
-                    <option>Sort: Newest</option>
-                    <option>Sort: Oldest</option>
-                    <option>Sort: Most Attendees</option>
-                </select>
+                <div class="grid md:grid-cols-4 gap-3">
+                    <input type="search" placeholder="Search by name…" class="w-full rounded-xl border px-4 py-2" />
+                    <select class="w-full rounded-xl border px-3 py-2">
+                    <option>All Categories</option>
+                    <option>Business</option>
+                    <option>Technology</option>
+                    <option>Education</option>
+                    </select>
+                    <select class="w-full rounded-xl border px-3 py-2">
+                    <option>Any Status</option>
+                    <option>Draft</option>
+                    <option>Scheduled</option>
+                    <option>Completed</option>
+                    <option>Cancelled</option>
+                    </select>
+                    <button class="rounded-xl border px-4 py-2">Reset</button>
                 </div>
-            </div>
-            <div class="overflow-x-auto">
-                <table class="min-w-full text-sm">
-                <thead class="bg-slate-50 text-slate-600">
-                    <tr>
-                    <th class="text-left px-5 py-3">Event</th>
-                    <th class="text-left px-5 py-3">Date</th>
-                    <th class="text-left px-5 py-3">Category</th>
-                    <th class="text-left px-5 py-3">Participants</th>
-                    <th class="text-left px-5 py-3">Status</th>
-                    <th class="px-5 py-3"></th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y">
-                    <tr class="hover:bg-slate-50">
-                    <td class="px-5 py-4 font-medium">Annual Conference</td>
-                    <td class="px-5 py-4">Aug 30, 2025</td>
-                    <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-indigo-100 text-indigo-700">Business</span></td>
-                    <td class="px-5 py-4">450</td>
-                    <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-emerald-100 text-emerald-700">Scheduled</span></td>
-                    <td class="px-5 py-4 text-right"><a class="text-indigo-600" href="#">View</a></td>
-                    </tr>
-                    <tr class="hover:bg-slate-50">
-                    <td class="px-5 py-4 font-medium">Tech Meetup</td>
-                    <td class="px-5 py-4">Sep 12, 2025</td>
-                    <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-fuchsia-100 text-fuchsia-700">Technology</span></td>
-                    <td class="px-5 py-4">220</td>
-                    <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-yellow-100 text-yellow-700">In Progress</span></td>
-                    <td class="px-5 py-4 text-right"><a class="text-indigo-600" href="#">View</a></td>
-                    </tr>
-                </tbody>
-                </table>
-            </div>
             </section>
-  </div>
+            {% comment %} Filters End{% endcomment %}
+
+            {% comment %} Table {% endcomment %}
+            <section class="mt-4 rounded-2xl border bg-white overflow-hidden">
+                <div class="px-5 py-4 border-b flex items-center justify-between">
+                    <div class="text-sm text-slate-600">Showing 1–10 of 42 events</div>
+                    <div>
+                        <select class="rounded-lg border px-3 py-2 text-sm">
+                            <option>Sort: Newest</option>
+                            <option>Sort: Oldest</option>
+                            <option>Sort: Most Attendees</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="min-w-full text-sm">
+                        <thead class="bg-slate-50 text-slate-600">
+                            <tr>
+                            <th class="text-left px-5 py-3">Event</th>
+                            <th class="text-left px-5 py-3">Date</th>
+                            <th class="text-left px-5 py-3">Category</th>
+                            <th class="text-left px-5 py-3">Participants</th>
+                            <th class="text-left px-5 py-3">Status</th>
+                            <th class="px-5 py-3"></th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y">
+                            <tr class="hover:bg-slate-50">
+                            <td class="px-5 py-4 font-medium">Annual Conference</td>
+                            <td class="px-5 py-4">Aug 30, 2025</td>
+                            <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-indigo-100 text-indigo-700">Business</span></td>
+                            <td class="px-5 py-4">450</td>
+                            <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-emerald-100 text-emerald-700">Scheduled</span></td>
+                            <td class="px-5 py-4 text-right"><a class="text-indigo-600" href="#">View</a></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                            <td class="px-5 py-4 font-medium">Tech Meetup</td>
+                            <td class="px-5 py-4">Sep 12, 2025</td>
+                            <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-fuchsia-100 text-fuchsia-700">Technology</span></td>
+                            <td class="px-5 py-4">220</td>
+                            <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-yellow-100 text-yellow-700">In Progress</span></td>
+                            <td class="px-5 py-4 text-right"><a class="text-indigo-600" href="#">View</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            {% comment %} Table End{% endcomment %}
+        </div>
+        {% comment %} Main Content End{% endcomment %}
 {% endblock dashboard %}
