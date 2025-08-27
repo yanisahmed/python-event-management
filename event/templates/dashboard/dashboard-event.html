@@ -105,22 +105,16 @@
                             </tr>
                         </thead>
                         <tbody class="divide-y">
+                            {% for event in events  %}
                             <tr class="hover:bg-slate-50">
-                            <td class="px-5 py-4 font-medium">Annual Conference</td>
-                            <td class="px-5 py-4">Aug 30, 2025</td>
-                            <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-indigo-100 text-indigo-700">Business</span></td>
-                            <td class="px-5 py-4">450</td>
-                            <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-emerald-100 text-emerald-700">Scheduled</span></td>
-                            <td class="px-5 py-4 text-right"><a class="text-indigo-600" href="#">View</a></td>
+                                <td class="px-5 py-4 font-medium">{{event.name}}</td>
+                                <td class="px-5 py-4">{{event.date}}</td>
+                                <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-indigo-100 text-indigo-700">{{event.category}}</span></td>
+                                <td class="px-5 py-4">{{event.participants.all|length}}</td>
+                                <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-emerald-100 text-emerald-700">{{event.staus}}</span></td>
+                                <td class="px-5 py-4 text-right"><a class="text-indigo-600" href="#">View</a></td>
                             </tr>
-                            <tr class="hover:bg-slate-50">
-                            <td class="px-5 py-4 font-medium">Tech Meetup</td>
-                            <td class="px-5 py-4">Sep 12, 2025</td>
-                            <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-fuchsia-100 text-fuchsia-700">Technology</span></td>
-                            <td class="px-5 py-4">220</td>
-                            <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-yellow-100 text-yellow-700">In Progress</span></td>
-                            <td class="px-5 py-4 text-right"><a class="text-indigo-600" href="#">View</a></td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
                     </table>
                 </div>

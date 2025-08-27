@@ -3,9 +3,9 @@ from event.views import *
 
 urlpatterns = [
     path('', frontend_home, name='home'),
-    path('dashboard/', dashboard, name='dashboard'),
-    path('dashboard/events/', dashboard_event, name='event'),
-    path('dashboard/participants/', dashboard_participant, name='participant'),
-    path('dashboard/tickets/', dashboard_ticket, name='ticket'),
-    path('dashboard/settings/', dashboard_settings, name='settings')
+    path('admin/dashboard/', dashboard, name='dashboard'),
+    path('admin/dashboard/events/', dashboard_event, name='event'),
+    path('admin/dashboard/participants/', dashboard_participant, name='participant'),
+    path('admin/dashboard/tickets/', dashboard_ticket, name='ticket'),
+    path('admin/dashboard/settings/', dashboard_settings, name='settings')
 ]

@@ -21,30 +21,34 @@
                     </a>
                 </div>
                 <nav class="p-4 space-y-1">
-                    <a href="http://127.0.0.1:8000/admin/dashboard/" class="flex items-center gap-3 px-3 py-2 rounded-xl bg-indigo-50 text-indigo-700 font-medium">
+                    <a href="{% url "dashboard" %}" class="flex items-center gap-3 px-3 py-2 rounded-xl bg-indigo-50 text-indigo-700 font-medium">
                     <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0h6"/></svg>
                     Dashboard
                     </a>
-                    <a href="http://127.0.0.1:8000/admin/dashboard/events/" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100">
+                    <a href="{% url "event" %}" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100">
                     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3M4 11h16M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2h-1M6 5H5a2 2 0 00-2 2v12a2 2 0 002 2"/></svg>
                     Events
                     </a>
-                    <a href="http://127.0.0.1:8000/admin/dashboard/participants/" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100">
+                    <a href="{% url "participant" %}" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100">
                     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a4 4 0 00-4-4h-1M9 20H4v-2a4 4 0 014-4h1m0-6a4 4 0 118 0 4 4 0 01-8 0z"/></svg>
                     Participants
                     </a>
-                    <a href="http://127.0.0.1:8000/admin/dashboard/tickets" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100">
+                    <a href="{% url "ticket" %}" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100">
                     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 7h4a2 2 0 012 2v2a2 2 0 01-2 2h-.5a2.5 2.5 0 000 5H19a2 2 0 002-2v-2M3 7h9a2 2 0 012 2v2a2 2 0 01-2 2H11.5a2.5 2.5 0 000 5H12"/></svg>
                     Tickets
                     </a>
-                    <a href="http://127.0.0.1:8000/admin/dashboard/settings" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100">
+                    <a href=" {% url "settings" %} " class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100">
                     <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.983 2.75a2 2 0 012 2V6.1a7.94 7.94 0 012.13.884l1.19-.686a2 2 0 012.73.732l1 1.732a2 2 0 01-.732 2.732l-1.19.686c.17.7.26 1.432.26 2.184s-.09 1.484-.26 2.184l1.19.686a2 2 0 01.732 2.732l-1 1.732a2 2 0 01-2.732.732l-1.19-.686a7.94 7.94 0 01-2.13.884v1.35a2 2 0 01-2 2h-2a2 2 0 01-2-2v-1.35a7.94 7.94 0 01-2.13-.884l-1.19.686a2 2 0 01-2.732-.732l-1-1.732a2 2 0 01.732-2.732l1.19-.686A7.94 7.94 0 013.75 12c0-.752.09-1.484.26-2.184l-1.19-.686A2 2 0 012.088 6.4l1-1.732a2 2 0 012.732-.732l1.19.686A7.94 7.94 0 019.14 6.1V4.75a2 2 0 012-2h2zM12 9.75A2.25 2.25 0 1012 14.25 2.25 2.25 0 0012 9.75z"/></svg>
                     Settings
                     </a>
-                    <a href="http://127.0.0.1:8000/admin/" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100">
-                    <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11.983 2.75a2 2 0 012 2V6.1a7.94 7.94 0 012.13.884l1.19-.686a2 2 0 012.73.732l1 1.732a2 2 0 01-.732 2.732l-1.19.686c.17.7.26 1.432.26 2.184s-.09 1.484-.26 2.184l1.19.686a2 2 0 01.732 2.732l-1 1.732a2 2 0 01-2.732.732l-1.19-.686a7.94 7.94 0 01-2.13.884v1.35a2 2 0 01-2 2h-2a2 2 0 01-2-2v-1.35a7.94 7.94 0 01-2.13-.884l-1.19.686a2 2 0 01-2.732-.732l-1-1.732a2 2 0 01.732-2.732l1.19-.686A7.94 7.94 0 013.75 12c0-.752.09-1.484.26-2.184l-1.19-.686A2 2 0 012.088 6.4l1-1.732a2 2 0 012.732-.732l1.19.686A7.94 7.94 0 019.14 6.1V4.75a2 2 0 012-2h2zM12 9.75A2.25 2.25 0 1012 14.25 2.25 2.25 0 0012 9.75z"/></svg>
-                    Visit Website
+                    <a href="{% url "home" %}" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-slate-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9 9 0 100-18 9 9 0 000 18z" />
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12h19.5M12 2.25c2.485 2.5 4.125 6.5 4.125 9.75S14.485 19 12 21c-2.485-2-4.125-6-4.125-9.75S9.515 4.75 12 2.25z" />
+                        </svg>
+                        Visit Website
                     </a>
+
                 </nav>
                 <div class="mt-auto p-4 text-xs text-slate-500">© 2025 Event Manager</div>
             </aside>
@@ -68,7 +72,7 @@
                 <main class="p-4 lg:p-8 space-y-6">
                     {% block dashboard %}{% endblock dashboard %}
                 </main>
-                
+
             </div>
         </div>
 
@@ -82,11 +86,12 @@
                     <button class="p-2" onclick="document.getElementById('mobile-drawer').classList.add('hidden')">✕</button>
                 </div>
                 <nav class="mt-2 space-y-1">
-                    <a href="dashboard.html" class="block px-3 py-2 rounded-lg bg-slate-100">Dashboard</a>
+                    <a href="{% url "dashboard" %}" class="block px-3 py-2 rounded-lg bg-slate-100">Dashboard</a>
                     <a href="events.html" class="block px-3 py-2 rounded-lg hover:bg-slate-100">Events</a>
                     <a href="attendees.html" class="block px-3 py-2 rounded-lg hover:bg-slate-100">Attendees</a>
                     <a href="tickets.html" class="block px-3 py-2 rounded-lg hover:bg-slate-100">Tickets</a>
                     <a href="settings.html" class="block px-3 py-2 rounded-lg hover:bg-slate-100">Settings</a>
+                    <a href="{% url "home" %}" class="block px-3 py-2 rounded-lg hover:bg-slate-100">Visit Website</a>
                 </nav>
             </div>
         </div>
