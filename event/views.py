@@ -1,9 +1,9 @@
 from datetime import datetime
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
-from event.forms import AddEventForm, AddParticipantForm
+from event.forms import AddEventForm, AddParticipantForm, AddCategoryForm
 from django.contrib import messages
-from event.models import Event, Participant
+from event.models import Event, Participant, Category
 from django.db.models import Count, Q
 
 # Create your views here.
@@ -81,8 +81,23 @@ def dashboard_participant(request):
 
     return render(request, 'dashboard/dashboard-participant.html', context)
 
-def dashboard_ticket(request):
-    return render(request, 'dashboard/dashboard-ticket.html')
+def dashboard_category(request):
+    category_query = Category.objects.all()
+    category_form = AddCategoryForm()
+    if request.method == 'POST':
+        category_form = AddCategoryForm(request.POST)
+        
+        if category_form.is_valid():
+            category_form.save()
+            category_form = AddCategoryForm()
+        
+        messages.success(request, 'Category added successfully.')
+        return redirect('category')
+    context = {
+            'categories': category_query,
+            'category_form': category_form
+        }
+    return render(request, 'dashboard/dashboard-category.html', context)
 
 def dashboard_settings(request):
     return render(request, 'dashboard/dashboard-settings.html')

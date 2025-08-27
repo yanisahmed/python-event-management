@@ -1,5 +1,5 @@
 from django import forms
-from event.models import Event, Participant
+from event.models import Event, Participant, Category
 
 class CreateUpdateMixin:
     default_class = 'w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none'
@@ -37,6 +37,15 @@ class AddParticipantForm(CreateUpdateMixin, forms.ModelForm):
             'event': forms.CheckboxSelectMultiple        
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.apply_mixin()
+
+class AddCategoryForm(CreateUpdateMixin, forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ['name', 'description']
+    
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.apply_mixin()

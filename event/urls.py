@@ -6,6 +6,6 @@ urlpatterns = [
     path('admin/dashboard/', dashboard, name='dashboard'),
     path('admin/dashboard/events/', dashboard_event, name='event'),
     path('admin/dashboard/participants/', dashboard_participant, name='participant'),
-    path('admin/dashboard/tickets/', dashboard_ticket, name='ticket'),
+    path('admin/dashboard/categories/', dashboard_category, name='category'),
     path('admin/dashboard/settings/', dashboard_settings, name='settings')
 ]
