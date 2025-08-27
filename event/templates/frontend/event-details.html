@@ -1,0 +1,48 @@
+{% extends "frontend/base.html" %}
+
+{% block title %}{{ event.name }} | Event Details{% endblock %}
+
+{% block content %}
+<section class="container mx-auto px-4 py-10">
+  <div class="bg-white shadow-lg rounded-lg overflow-hidden">
+    <!-- Event Banner -->
+    <img src="https://dummyimage.com/1200x400/2e74ff/fff&text={{ event.name }}" 
+         alt="Event Banner" class="w-full h-64 md:h-96 object-cover">
+
+    <!-- Event Content -->
+    <div class="p-6 md:p-10">
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-800 mb-4">{{ event.name }}</h1>
+      <p class="text-gray-600 mb-6">{{ event.description }}</p>
+
+      <div class="grid md:grid-cols-2 gap-6 mb-8">
+        <div>
+          <h3 class="font-semibold text-lg text-gray-700">📅 Date</h3>
+          <p class="text-gray-600">{{ event.date }}</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-lg text-gray-700">📍 Location</h3>
+          <p class="text-gray-600">{{ event.location }}</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-lg text-gray-700">🏷️ Category</h3>
+          <p class="text-gray-600">{{ event.category.name }}</p>
+        </div>
+        <div>
+          <h3 class="font-semibold text-lg text-gray-700">👥 Participants</h3>
+          <ul class="list-disc list-inside text-gray-600">
+            {% for participant in event.participants.all %}
+              <li>{{ participant.name }} ({{ participant.email }})</li>
+            {% empty %}
+              <li>No participants registered yet.</li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+
+      <a href="/" class="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+        Back to Events
+      </a>
+    </div>
+  </div>
+</section>
+{% endblock %}

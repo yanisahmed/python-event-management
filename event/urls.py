@@ -5,6 +5,7 @@ urlpatterns = [
     path('', frontend_home, name='home'),
     path('admin/dashboard/', dashboard, name='dashboard'),
     path('admin/dashboard/events/', dashboard_event, name='event'),
+    path('admin/dashboard/events/<int:event_id>/', dashboard_event_details, name='event-details'),
     path('admin/dashboard/participants/', dashboard_participant, name='participant'),
     path('admin/dashboard/categories/', dashboard_category, name='category'),
     path('admin/dashboard/settings/', dashboard_settings, name='settings')

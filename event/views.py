@@ -8,7 +8,49 @@ from django.db.models import Count, Q
 
 # Create your views here.
 def frontend_home(request):
-    return render(request, 'frontend/home.html')    
+    base_query = Event.objects.select_related('category').prefetch_related('participants')
+    category_query = Category.objects.all()
+
+    # Search
+    search_query = request.GET.get('search', '')
+    if search_query:
+        base_query = base_query.filter(
+            Q(name__icontains=search_query) | 
+            Q(description__icontains=search_query) | 
+            Q(category__name__icontains=search_query)
+        )
+
+    # Category filter
+    category = request.GET.get('category', '')
+    if category:
+        base_query = base_query.filter(category__name__icontains=category)
+
+    # Date range filter
+    start_date = request.GET.get('start_date', '')
+    end_date = request.GET.get('end_date', '')
+    if start_date and end_date:
+        base_query = base_query.filter(date__range=[start_date, end_date])
+    elif start_date:
+        base_query = base_query.filter(date__gte=start_date)
+    elif end_date:
+        base_query = base_query.filter(date__lte=end_date)
+
+    # Sorting
+    sort = request.GET.get('sort', '')
+    if sort == 'newest':
+        base_query = base_query.order_by('-date')
+    elif sort == 'oldest':
+        base_query = base_query.order_by('date')
+    elif sort == 'name-asc':
+        base_query = base_query.order_by('name')
+    elif sort == 'name-desc':
+        base_query = base_query.order_by('-name')
+
+    context = {
+        'events': base_query
+        ,'category_query': category_query,
+    }
+    return render(request, 'frontend/home.html', context)   
 
 def dashboard(request):
     base_query = Event.objects.select_related('category').prefetch_related('participants')
@@ -59,6 +101,18 @@ def dashboard_event(request):
         'event_from': event_form
     }
     return render(request, 'dashboard/dashboard-event.html', context)
+
+def dashboard_event_details(request, event_id):
+    print(event_id)
+    event = Event.objects.select_related('category').prefetch_related('participants').filter(id=event_id).first()
+    if not event:
+        messages.error(request, 'Event not found.')
+        return redirect('event')
+    
+    context = {
+        'event': event
+    }
+    return render(request, 'frontend/event-details.html', context)
 
 
 def dashboard_participant(request):

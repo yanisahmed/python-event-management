@@ -96,7 +96,10 @@
               <td class="px-5 py-4 font-medium">{{participant.name}}</td>
               <td class="px-5 py-4">{{participant.email}}</td>
               <td class="px-5 py-4">{% for event in participant.event.all  %}<span class="bg-indigo-500 mx-1 text-white rounded p-1">{{event.name}}</span>{% endfor %}</td>
-              <td class="px-5 py-4 text-right"><a class="text-indigo-600" href="#">View</a></td>
+              <td class="px-5 py-4 text-right">
+                <a class="text-white bg-indigo-300 rounded px-4 py-1" href="#">EDIT</a>
+                <a class="text-white bg-red-300 rounded px-4 py-1" href="#">DELETE</a>
+              </td>
             </tr>
             {% endfor %}
           </tbody>
