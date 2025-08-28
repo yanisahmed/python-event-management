@@ -52,6 +52,20 @@ def frontend_home(request):
     }
     return render(request, 'frontend/home.html', context)   
 
+def event_details(request, event_id):
+    print(event_id)
+    event = Event.objects.select_related('category').prefetch_related('participants').filter(id=event_id).first()
+    if not event:
+        messages.error(request, 'Event not found.')
+        return redirect('event')
+    
+    context = {
+        'event': event
+    }
+    return render(request, 'frontend/event-details.html', context)
+
+
+
 def dashboard(request):
     base_query = Event.objects.select_related('category').prefetch_related('participants')
     
@@ -82,8 +96,16 @@ def dashboard(request):
     }
     return render(request, 'dashboard/dashboard-home.html', context)
 
+# EVENT
 def dashboard_event(request):
     events = Event.objects.select_related('category').prefetch_related('participants').all()
+    context = {
+        'events':events
+    }
+    return render(request, 'dashboard/dashboard-event.html', context)
+
+def dashboard_event_add(request):
+    
     event_form = AddEventForm()
 
     if request.method == 'POST':
@@ -91,16 +113,15 @@ def dashboard_event(request):
         
         if event_form.is_valid():
             event_form.save()
-            event_form = AddEventForm()
         
         messages.success(request, 'Event created successfully.')
         return redirect('event')
 
     context = {
-        'events':events,
-        'event_from': event_form
+        'action' : 'Add Event',
+        'event_form': event_form
     }
-    return render(request, 'dashboard/dashboard-event.html', context)
+    return render(request, 'dashboard/dashboard-event-form.html', context)
 
 def dashboard_event_edit(request, event_id):
     event = Event.objects.get(id=event_id)
@@ -116,26 +137,22 @@ def dashboard_event_edit(request, event_id):
         return redirect('event')
 
     context = {
+        'action': 'Edit Event',
         'event_form': event_form
     }
     return render(request, 'dashboard/dashboard-event-form.html', context)
 
 
-def dashboard_event_details(request, event_id):
-    print(event_id)
-    event = Event.objects.select_related('category').prefetch_related('participants').filter(id=event_id).first()
-    if not event:
-        messages.error(request, 'Event not found.')
-        return redirect('event')
-    
-    context = {
-        'event': event
-    }
-    return render(request, 'frontend/event-details.html', context)
-
-
+# PARTICIPANT
 def dashboard_participant(request):
     participants = Participant.objects.prefetch_related('event').all()
+    context = {
+        'participants': participants,
+    }
+
+    return render(request, 'dashboard/dashboard-participant.html', context)
+
+def dashboard_participant_add(request):
     participant_form = AddParticipantForm()
 
     if request.method == 'POST':
@@ -143,16 +160,14 @@ def dashboard_participant(request):
         
         if participant_form.is_valid():
             participant_form.save()
-            participant_form = AddParticipantForm()
         
         messages.success(request, 'Participant added successfully.')
         return redirect('participant')
     context = {
-        'participants': participants,
         'participant_form': participant_form
     }
 
-    return render(request, 'dashboard/dashboard-participant.html', context)
+    return render(request, 'dashboard/dashboard-participant-form.html', context)
 
 def dashboard_participant_edit(request, id):
     participant = Participant.objects.get(id=id)
@@ -172,23 +187,29 @@ def dashboard_participant_edit(request, id):
 
     return render(request, 'dashboard/dashboard-participant-form.html', context)
 
+# CATEGORY
 def dashboard_category(request):
     category_query = Category.objects.all()
+    context = {
+        'categories': category_query
+    }
+    return render(request, 'dashboard/dashboard-category.html', context)
+
+def dashboard_category_add(request):
     category_form = AddCategoryForm()
     if request.method == 'POST':
         category_form = AddCategoryForm(request.POST)
         
         if category_form.is_valid():
             category_form.save()
-            category_form = AddCategoryForm()
         
         messages.success(request, 'Category added successfully.')
         return redirect('category')
     context = {
-            'categories': category_query,
+            'action': 'Add Category',
             'category_form': category_form
         }
-    return render(request, 'dashboard/dashboard-category.html', context)
+    return render(request, 'dashboard/dashboard-category-form.html', context)
 
 def dashboard_category_edit(request, cat_id):
     cat = Category.objects.get(id = cat_id)
@@ -207,6 +228,7 @@ def dashboard_category_edit(request, cat_id):
         return redirect('category')
     
     context = {
+        'action': 'Edit Category',
         'category_form': category_form
     }
     return render(request, 'dashboard/dashboard-category-form.html', context)
