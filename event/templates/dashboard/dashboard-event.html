@@ -85,9 +85,12 @@
                                 <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-indigo-100 text-indigo-700">{{event.category}}</span></td>
                                 <td class="px-5 py-4">{{event.participants.all|length}}</td>
                                 <td class="px-5 py-4"><span class="px-2 py-1 text-xs rounded-lg bg-emerald-100 text-emerald-700">{{event.staus}}</span></td>
-                                <td class="px-5 py-4 text-right">
-                                    <a href="{% url "event-edit" event.id %}" class="text-white bg-indigo-300 rounded px-4 py-1">EDIT</a>
-                                    <a class="text-white bg-red-300 rounded px-4 py-1">DELETE</a>
+                                <td class="px-5 py-4 flex gap-2 justify-end text-right">
+                                    <a href="{% url "event-edit" event.id %}" class="text-white bg-indigo-300 rounded px-4 py-2">EDIT</a>
+                                    <form method="POST" action="{% url 'event-delete' event.id %}">
+                                        {% csrf_token %}
+                                        <button type="submit" class="px-3 py-2 rounded-xl border text-white bg-red-500">Delete</button>
+                                    </form>
                                 </td>
                             </tr>
                             {% endfor %}

@@ -1,6 +1,6 @@
 from datetime import datetime
 from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from event.forms import AddEventForm, AddParticipantForm, AddCategoryForm
 from django.contrib import messages
 from event.models import Event, Participant, Category
@@ -142,6 +142,12 @@ def dashboard_event_edit(request, event_id):
     }
     return render(request, 'dashboard/dashboard-event-form.html', context)
 
+def dashboard_event_delete(request, id):
+    if request.method == "POST":
+        event = get_object_or_404(Event, id=id)
+        event.delete()
+        messages.success(request, 'Event has been deleted')
+    return redirect('event')
 
 # PARTICIPANT
 def dashboard_participant(request):
@@ -187,6 +193,12 @@ def dashboard_participant_edit(request, id):
 
     return render(request, 'dashboard/dashboard-participant-form.html', context)
 
+def dashboard_participant_delete(request, id):
+    if request.method == "POST":
+        participant = get_object_or_404(Participant, id=id)
+        participant.delete()
+        messages.success(request, 'Participant has been deleted')
+    return redirect('participant')
 # CATEGORY
 def dashboard_category(request):
     category_query = Category.objects.all()
@@ -232,6 +244,13 @@ def dashboard_category_edit(request, cat_id):
         'category_form': category_form
     }
     return render(request, 'dashboard/dashboard-category-form.html', context)
+
+def dashboard_category_delete(request, id):
+    if request.method == "POST":
+        cat = get_object_or_404(Category, id=id)
+        cat.delete()
+        messages.success(request, 'Category has been deleted')
+    return redirect('category')
 
 def dashboard_settings(request):
     return render(request, 'dashboard/dashboard-settings.html')
