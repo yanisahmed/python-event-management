@@ -102,6 +102,25 @@ def dashboard_event(request):
     }
     return render(request, 'dashboard/dashboard-event.html', context)
 
+def dashboard_event_edit(request, event_id):
+    event = Event.objects.get(id=event_id)
+    event_form = AddEventForm(instance=event)
+
+    if request.method == 'POST':
+        event_form = AddEventForm(request.POST, instance=event)
+        
+        if event_form.is_valid():
+            event_form.save()
+        
+        messages.success(request, 'Event updated successfully.')
+        return redirect('event')
+
+    context = {
+        'event_form': event_form
+    }
+    return render(request, 'dashboard/dashboard-event-form.html', context)
+
+
 def dashboard_event_details(request, event_id):
     print(event_id)
     event = Event.objects.select_related('category').prefetch_related('participants').filter(id=event_id).first()
@@ -135,6 +154,24 @@ def dashboard_participant(request):
 
     return render(request, 'dashboard/dashboard-participant.html', context)
 
+def dashboard_participant_edit(request, id):
+    participant = Participant.objects.get(id=id)
+    participant_form = AddParticipantForm(instance=participant)
+
+    if request.method == 'POST':
+        participant_form = AddParticipantForm(request.POST, instance=participant)
+        
+        if participant_form.is_valid():
+            participant_form.save()
+        
+        messages.success(request, 'Participant Updated successfully.')
+        return redirect('participant')
+    context = {
+        'participant_form': participant_form
+    }
+
+    return render(request, 'dashboard/dashboard-participant-form.html', context)
+
 def dashboard_category(request):
     category_query = Category.objects.all()
     category_form = AddCategoryForm()
@@ -152,6 +189,27 @@ def dashboard_category(request):
             'category_form': category_form
         }
     return render(request, 'dashboard/dashboard-category.html', context)
+
+def dashboard_category_edit(request, cat_id):
+    cat = Category.objects.get(id = cat_id)
+    category_form = AddCategoryForm(instance = cat)
+
+    if not cat:
+        messages.error(request, 'Category Not Found')
+        return redirect('category')
+
+    if request.method == 'POST':
+        category_form = AddCategoryForm(request.POST, instance = cat)
+        if category_form.is_valid():
+            category_form.save()
+
+        messages.success(request, 'Category upated Successfully')
+        return redirect('category')
+    
+    context = {
+        'category_form': category_form
+    }
+    return render(request, 'dashboard/dashboard-category-form.html', context)
 
 def dashboard_settings(request):
     return render(request, 'dashboard/dashboard-settings.html')

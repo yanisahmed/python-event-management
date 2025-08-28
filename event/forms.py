@@ -2,7 +2,7 @@ from django import forms
 from event.models import Event, Participant, Category
 
 class CreateUpdateMixin:
-    default_class = 'w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none'
+    default_class = 'w-full border border-gray-300 rounded-lg px-3 my-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none'
     date_class = 'border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500 focus:outline-none'
     multiple_check_class = 'w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-blue-500'
     def apply_mixin(self):
@@ -20,7 +20,7 @@ class CreateUpdateMixin:
 class AddEventForm(CreateUpdateMixin, forms.ModelForm):
     class Meta:
         model = Event
-        fields = ['name', 'date', 'location', 'description', 'category']
+        fields = ['name', 'date', 'location', 'category', 'description']
         widgets = {
             'date': forms.SelectDateWidget
         }
