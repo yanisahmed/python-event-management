@@ -1,54 +1,6 @@
+{% extends "frontend/base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<title>Event Website</title>
-		<script src="https://cdn.tailwindcss.com"></script>
-	</head>
-	<body class="bg-gray-50 flex flex-col min-h-screen">
-		{% comment %} Navbar {% endcomment %}
-		<nav class="bg-white shadow">
-			<div class="container mx-auto px-4 py-3 flex items-center justify-between">
-
-				<!-- Logo -->
-				<div class="text-2xl font-bold text-blue-600">EventLogo</div>
-
-				<!-- Search Bar -->
-				<div class="flex-1 mx-6">
-					<div class="flex justify-center">
-						<form method="GET" class="w-full max-w-md">
-							<input type="text" name="search" placeholder="Search events..."
-							class="w-1/2 px-4 py-2 border rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
-							<button type="submit" class="px-4 py-2 bg-blue-600 text-white rounded-r-lg hover:bg-blue-700">Search</button>
-						</form>
-					</div>
-				</div>
-
-				<!-- Menu -->
-				<div class="hidden md:flex space-x-6">
-					<a href="/" class="text-gray-700 hover:text-blue-600">Home</a>
-					<a href="#" class="text-gray-700 hover:text-blue-600">Contact</a>
-					<a href=" {% url "dashboard" %} " class="text-gray-700 hover:text-blue-600">Dashboard</a>
-				</div>
-
-				<!-- Mobile Menu Button -->
-				<div class="md:hidden">
-					<button id="menu-toggle" class="text-gray-700 focus:outline-none">
-					☰
-					</button>
-				</div>
-			</div>
-
-			<!-- Mobile Menu -->
-			<div id="mobile-menu" class="hidden md:hidden px-4 pb-4">
-				<a href="/" class="block py-2 text-gray-700 hover:text-blue-600">Home</a>
-				<a href="#" class="block py-2 text-gray-700 hover:text-blue-600">Contact</a>
-				<a href="http://127.0.0.1:8000/admin/dashboard/" class="block py-2 text-gray-700 hover:text-blue-600">Dashboard</a>
-			</div>
-		</nav>
-
+{% block content %}
 		{% comment %} Hero Section {% endcomment %}
 		<section class="bg-blue-100 py-16 h-96 text-center" style="background-image:url('{% static 'images/hero-bg.jpg' %}'); background-size: cover; background-position: center;">
 			<h1 class="text-4xl font-bold text-white mb-4">Discover Amazing Events</h1>
@@ -104,58 +56,4 @@
 			<!-- Repeat for more events -->
 		</section>
 
-		{% comment %} Footer {% endcomment %}
-		<footer class="bg-gray-900 text-white py-10 mt-auto">
-			<div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
-
-				{% comment %} About {% endcomment %}
-				<div>
-					<h3 class="text-lg font-semibold mb-3">About Us</h3>
-					<p class="text-gray-400">MyEvents is your go-to platform to find and explore exciting events happening near you.</p>
-				</div>
-
-				{% comment %} Quick Links {% endcomment %}
-				<div>
-					<h3 class="text-lg font-semibold mb-3">Quick Links</h3>
-					<ul class="space-y-2 text-gray-400">
-						<li><a href="#" class="hover:text-white">Home</a></li>
-						<li><a href="#" class="hover:text-white">Events</a></li>
-						<li><a href="#" class="hover:text-white">About</a></li>
-						<li><a href="#" class="hover:text-white">Contact</a></li>
-					</ul>
-				</div>
-
-				<!-- Categories -->
-				<div>
-					<h3 class="text-lg font-semibold mb-3">Categories</h3>
-					<ul class="space-y-2 text-gray-400">
-						<li><a href="#" class="hover:text-white">Music</a></li>
-						<li><a href="#" class="hover:text-white">Sports</a></li>
-						<li><a href="#" class="hover:text-white">Workshops</a></li>
-						<li><a href="#" class="hover:text-white">Conferences</a></li>
-					</ul>
-				</div>
-
-				<!-- Contact -->
-				<div>
-					<h3 class="text-lg font-semibold mb-3">Contact</h3>
-					<p class="text-gray-400">📍 123 Main Street, Sylhet</p>
-					<p class="text-gray-400">📞 +880 1234 567890</p>
-					<p class="text-gray-400">✉️ info@myevents.com</p>
-				</div>
-			</div>
-
-			<div class="mt-8 text-center text-gray-500">
-				&copy; 2025 MyEvents. All rights reserved.
-			</div>
-		</footer>
-
-		{% comment %} Script for Mobile Menu {% endcomment %}
-		<script>
-			document.getElementById('menu-toggle').addEventListener('click', function () {
-			document.getElementById('mobile-menu').classList.toggle('hidden');
-			});
-		</script>
-
-	</body>
-</html>
+{% endblock content %}
