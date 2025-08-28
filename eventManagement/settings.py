@@ -9,7 +9,7 @@ https://docs.djangoproject.com/en/5.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.2/ref/settings/
 """
-
+import dj_database_url
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-_u3@8!2ymrukxoxz9#zc*(@9&v#n8ftzm@bc=!g-7*fvf4igfc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
+CSRF_TRUSTED_ORIGINS = ['HTTPS://*.ONRENDER.COM', 'HTTP://127.0.1:8000']
 
 
 # Application definition
@@ -83,15 +84,24 @@ WSGI_APPLICATION = 'eventManagement.wsgi.application'
 # }
 
 #pip install psycopg2-binary
+#local postgress
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'event_management',
+#         'USER': 'postgres',
+#         'PASSWORD': 'root',
+#         'HOST': 'localhost',
+#         'PORT': '5432'
+#     }
+# }
+
+# Replace the SQLite DATABASES configuration with PostgreSQL:
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'event_management',
-        'USER': 'postgres',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',
-        'PORT': '5432'
-    }
+    'default': dj_database_url.config(
+        default='postgresql://event_management_db_anxo_user:iTn2zs4Os8BDMGjdlpVJjixBfifQhVRG@dpg-d2o91va4d50c739plu00-a.oregon-postgres.render.com/event_management_db_anxo',
+        conn_max_age=600
+    )
 }
 
 
