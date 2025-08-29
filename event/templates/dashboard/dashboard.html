@@ -17,7 +17,7 @@
             {% comment %} Sidebar {% endcomment %}
             <aside class="hidden lg:flex lg:flex-col w-64 border-r bg-white/90 backdrop-blur sticky top-0 h-screen">
                 <div class="px-6 h-16 flex items-center border-b">
-                    <a href="dashboard.html" class="flex items-center gap-2 font-semibold tracking-tight">
+                    <a href="{% url 'dashboard' %}" class="flex items-center gap-2 font-semibold tracking-tight">
                     <span class="inline-flex h-9 w-9 items-center justify-center rounded-xl bg-indigo-600 text-white">EM</span>
                     <span>Event Manager</span>
                     </a>
