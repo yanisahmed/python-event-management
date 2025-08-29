@@ -170,6 +170,7 @@ def dashboard_participant_add(request):
         messages.success(request, 'Participant added successfully.')
         return redirect('participant')
     context = {
+        'action': 'Add Participant',
         'participant_form': participant_form
     }
 
@@ -188,6 +189,7 @@ def dashboard_participant_edit(request, id):
         messages.success(request, 'Participant Updated successfully.')
         return redirect('participant')
     context = {
+        'action' : 'Edit Participant',
         'participant_form': participant_form
     }
 
