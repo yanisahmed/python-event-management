@@ -25,9 +25,13 @@ SECRET_KEY = 'django-insecure-_u3@8!2ymrukxoxz9#zc*(@9&v#n8ftzm@bc=!g-7*fvf4igfc
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+    "localhost",
+    "python-event-management.onrender.com",
+]
 CSRF_TRUSTED_ORIGINS = [
-    "https://*.onrender.com",
+    "https://python-event-management.onrender.com",
     "http://127.0.0.1:8000",
 ]
 
@@ -41,7 +45,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'debug_toolbar',
     'event'
 ]
 
@@ -53,8 +56,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'debug_toolbar.middleware.DebugToolbarMiddleware',
 ]
+
+if DEBUG:
+    INSTALLED_APPS += ['debug_toolbar']
+    MIDDLEWARE += ['debug_toolbar.middleware.DebugToolbarMiddleware']
+    INTERNAL_IPS = ["127.0.0.1"]
 
 ROOT_URLCONF = 'eventManagement.urls'
 
@@ -151,9 +158,3 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-INTERNAL_IPS = [
-    # ...
-    "127.0.0.1",
-    # ...
-]
